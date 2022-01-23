@@ -1,7 +1,7 @@
 
 $( document ).ready(function() {
     var Staticroot="https://ganglandmanipal.herokuapp.com";
-    var Name2;
+    var Name1;
     var Name2;
     $(".Score").hide();
     $("#customerOrder").on( 'click',function(){
