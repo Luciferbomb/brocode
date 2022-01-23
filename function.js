@@ -1,6 +1,6 @@
 
 $( document ).ready(function() {
-    var Staticroot="https://ganglandmanipal.herokuapp.com/";
+    var Staticroot="https://ganglandmanipal.herokuapp.com";
     var Name2;
     var Name2;
     $(".Score").hide();
