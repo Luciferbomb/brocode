@@ -26,7 +26,7 @@ $( document ).ready(function() {
           "Content-Type": "application/json"
         },
         "data": JSON.stringify({
-          "yname": Name2,
+          "yname": Name1,
           "bname": Name2
         }),
       };
