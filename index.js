@@ -30,7 +30,7 @@ app.post('/create', (req,res) => {
     console.log("body",req.body);
     var Mydata = new Contact(req.body);
     Mydata.save().then(()=>{
-        res.status(200).send("Inserted");
+        res.status(200).send(req.body);
         
     }).catch(()=>{
         res.status(400).send("error");
