@@ -25,13 +25,7 @@ const kittySchema = new mongoose.Schema({
 const Contact = mongoose.model('LatestData', kittySchema);
 
 var jsonParser = bodyparser.json();
-var urlencodedParser = bodyparser.urlencoded({ extended: false })
-
-app.get('/',(req,res)=>{
-    
-    res.sendFile(path.join(__dirname,'./index.html'))
-})
-app.use(bodyparser.json({extended: true}));
+var urlencodedParser = bodyparser.urlencoded({ extended: false });
 app.post('/create', (req,res) => {
     console.log("body",req.body);
     var Mydata = new Contact(req.body);
@@ -39,9 +33,19 @@ app.post('/create', (req,res) => {
         res.status(200).send("Inserted");
         
     }).catch(()=>{
-        res.status(200).send("Inserted");
+        res.status(400).send("error");
     })
 });
+app.use(bodyparser.json({extended: true}));
+app.use(express.static(path.join(__dirname)));
+app.set("view engine", "ejs")
+
+app.get('/',(req,res)=>{
+
+    res.render('index.html')
+})
+
+
 app.listen(PORT, () => {
     console.log("Started");
 });

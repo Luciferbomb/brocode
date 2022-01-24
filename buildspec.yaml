@@ -1,0 +1,35 @@
+version: 0.1
+phases:
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+#       - npm start
+  post_build:
+    commands:
+      # copy the contents of /build to S3
+      - aws s3 cp --recursive --acl public-read ./ s3://cloudfrontstack-s3bucket-y8n8yt2kgd5u/ 
+      # set the cache-control headers for service-worker.js to prevent
+      # browser caching
+      # - >
+      #   aws s3 cp --acl public-read 
+      #   --cache-control="max-age=0, no-cache, no-store, must-revalidate" 
+      #   ./build/service-worker.js s3://benefitscal-dev-marketing-bucket/
+      # # set the cache-control headers for index.html to prevent
+      # # browser caching
+      # - >
+      #   aws s3 cp --acl public-read 
+      #   --cache-control="max-age=0, no-cache, no-store, must-revalidate" 
+      #   ./build/index.html s3://benefitscal-dev-marketing-bucket/
+      # invalidate the CloudFront cache for index.html and service-worker.js
+      # to force CloudFront to update its edge locations with the new versions
+      # - >
+      # aws cloudfront create-invalidation --distribution-id E263PC7X4717VV 
+      #  --paths /index.html /service-worker.js
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build
