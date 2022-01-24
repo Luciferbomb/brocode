@@ -1,6 +1,6 @@
 
 $( document ).ready(function() {
-    var Staticroot="http://localhost:3000";
+    var Staticroot="https://ganglandmanipal.herokuapp.com/";
     var Name2;
     var Name2;
     $(".Score").hide();
