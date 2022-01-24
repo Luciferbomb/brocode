@@ -25,7 +25,11 @@ const kittySchema = new mongoose.Schema({
 const Contact = mongoose.model('LatestData', kittySchema);
 
 var jsonParser = bodyparser.json();
+app.configure(function(){
+    app.use(bodyparser.json({extended: true}));
+});
 var urlencodedParser = bodyparser.urlencoded({ extended: false });
+
 app.post('/create', (req,res) => {
     console.log("body",req.body);
     var Mydata = new Contact(req.body);
@@ -36,7 +40,7 @@ app.post('/create', (req,res) => {
         res.status(400).send("error");
     })
 });
-app.use(bodyparser.json({extended: true}));
+
 app.use(express.static(path.join(__dirname)));
 app.set("view engine", "ejs")
 
