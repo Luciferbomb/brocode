@@ -14,7 +14,7 @@ $( document ).ready(function() {
         var Score = Math.abs(((10-(Name1.length+Name2.length))/10))*100;
         console.log("Score",Score);
         let element = document.getElementById("Score");
-        element.innerHTML = Score+" "+"Tmse na ho paega";
+        element.innerHTML = "Tmse na ho paega";
         $(".contact-us").hide();
         $(".Score").show();
 
