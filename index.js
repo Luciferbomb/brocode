@@ -25,10 +25,10 @@ const kittySchema = new mongoose.Schema({
 const Contact = mongoose.model('LatestData', kittySchema);
 
 var jsonParser = bodyparser.json();
-app.configure(function(){
-    app.use(bodyparser.json({extended: true}));
-});
+
 var urlencodedParser = bodyparser.urlencoded({ extended: false });
+
+ app.use(bodyparser.json({extended: true}));
 
 app.post('/create', (req,res) => {
     console.log("body",req.body);
